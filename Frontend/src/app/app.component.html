@@ -1,0 +1,9 @@
+<div class="sidenav" style="">
+  <h1>Risks types</h1>
+  <div *ngFor="let risk of risksTypes" (click)="getRisk(risk.id)"
+       class="clickable">{{risk.riskName}}
+  </div>
+</div>
+<p>all this data for company with id 1 name it automible EX </p>
+<router-outlet></router-outlet>
+

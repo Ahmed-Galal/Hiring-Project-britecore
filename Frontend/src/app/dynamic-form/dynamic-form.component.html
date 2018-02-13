@@ -1,0 +1,63 @@
+<!--form-->
+<div class="main">
+  <div *ngIf="fieldList?.length>0">
+    <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
+      <div *ngFor="let field of fieldList">
+        <label [attr.for]="field.key">{{field.label}}</label>
+        <div class="form-group" [ngSwitch]="field.type">
+          <input class="form-control" *ngSwitchCase="'text'"
+                 [formControlName]="field.key"
+                 [id]="field.id" [type]="field.type">
+          <input class="form-control" *ngSwitchCase="'number'"
+                 [formControlName]="field.key"
+                 [id]="field.id" [type]="field.type">
+          <input class="form-control" *ngSwitchCase="'date'"
+                 [formControlName]="field.key"
+                 [id]="field.id" [type]="field.type">
+          <div *ngSwitchCase="'enum'">
+            <select class="form-control" [formControlName]="field.key">
+              <option *ngFor="let option of field.options" [value]="option">
+                {{ option }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+  </div>
+</div>
+
+<!--table-->
+
+<div class="main">
+  <table *ngIf="fieldList?.length>0">
+    <tr>
+      <th style="width: 40px">#</th>
+      <th *ngFor="let field of fieldList">{{field.label}}</th>
+      <th style="width: 40px">add/edit</th>
+    </tr>
+    <ng-container *ngFor="let row of riskRows, index as i">
+      <tr>
+        <td>{{i+1}}</td>
+        <td *ngFor="let field of fieldList">
+            <span *ngIf="field['type']=='date'; else other_content">
+              {{row[field.label]['data'] | date: 'dd-MM-yyyy  HH:mm'}}
+            </span>
+          <ng-template #other_content>{{row[field.label]['data'] }}</ng-template>
+        </td>
+        <td class="button-addedit">
+          <a href="javascript:void(0)" (click)="editRisk(row)">
+            edit
+            <span class="glyphicon glyphicon-edit edit-row"></span>
+          </a>
+          <a href="javascript:void(0)" (click)="deleteRisk(row)">
+            delete
+            <span class="glyphicon glyphicon-trash delete-row"></span>
+          </a>
+
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>
