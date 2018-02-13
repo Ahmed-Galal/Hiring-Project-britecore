@@ -15,8 +15,14 @@ th, td {
 
 .main {
   width: 80%;
-  padding-top: 50px;
+  padding-bottom: 50px;
   padding-left: 190px;
+}
+
+.main p {
+  text-align: center;
+  padding: 25px;
+  color: seagreen;
 }
 
 .button-addedit {
