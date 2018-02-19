@@ -53,7 +53,7 @@ def risk(request, company_id, risk_id):
                                   value=new_data[th.fieldName])
                 td.save()
         result = get_risk(risk_id)
-        return JsonResponse({"result": result})
+        return JsonResponse({"result": result},status=201)
 
 
 def all_risk(request, company_id):
