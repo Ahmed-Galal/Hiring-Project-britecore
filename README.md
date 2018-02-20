@@ -28,7 +28,7 @@ python manage.py runserver
 ```
 - now supposed to see http server running on local host @ port 8000
 ## deployment with uWSGI 
-- follow instriction in this doc https://uwsgi.readthedocs.io/en/latest/tutorials/Django_and_nginx.html
+- follow instruction in this doc https://uwsgi.readthedocs.io/en/latest/tutorials/Django_and_nginx.html
 
 # frontend 
 - using angular 5.2.4 to build a single page application 
